@@ -6,6 +6,6 @@ export class AppService {
     return 'Hello World! Muaz Hayee';
   }
   getApologies(): string {
-    return 'I would like to do apologies';
+    return 'I would like to do apologies krub';
   }
 }

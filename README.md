@@ -1,3 +1,9 @@
+    "create-module": "nest g module %npm_config_name% && nest g service %npm_config_name% && nest g controller %npm_config_name%"
+
+    create module without spec files
+
+    nest g module users --no-spec && nest g service users --no-spec && nest g controller users --no-spec
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -71,5 +77,5 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-"# nestjs-back-end" 
-"# nestjs-back-end" 
+"# nestjs-back-end"
+"# nestjs-back-end"
