@@ -11,8 +11,12 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/apologies') // Corrected the path here
-  getApologies(): string {
-    return this.appService.getApologies(); // You might want to call a different method in AppService that returns apologies
-  }
+  // @Get('/apologies')
+  // getApologies(): string {
+  //   return this.appService.getApologies();
+  // }
+  // @Get('/users')
+  // findAllUsers(): any {
+  //   return this.appService.findAllUsers();
+  // }
 }
