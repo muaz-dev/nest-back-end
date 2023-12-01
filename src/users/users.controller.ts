@@ -11,18 +11,27 @@ export class UsersController {
     return this.usersService.grertingUser();
   }
 
-  @Get("/1")
-  findAllUsers(): any {
-    return this.usersService.findAllUsers();
-  }
+  // @Get("/1")
+  // findAllUsers(): any {
+  //   return this.usersService.findAllUsers();
+  // }
 
-  @Post("/create")
-  async create(@Body() userData: any): Promise<any[]> {
-    return this.usersService.addUser(userData);
-  }
+  // @Post("/create")
+  // async create(@Body() userData: any): Promise<any[]> {
+  //   return this.usersService.addUser(userData);
+  // }
   @Post("/register")
   async register(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    const userId = await this.usersService.createUser(createUserDto);
+    await this.usersService.createUserCollection(
+      userId,
+      userId.name,
+      {
+        user: "",
+      },
+      userId.timestamp,
+    );
+    return { userId };
   }
 
   @Put("/:id")

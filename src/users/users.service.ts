@@ -17,7 +17,7 @@ export class UsersService {
   async addUser(userData: any): Promise<any[]> {
     const collection = this.databaseService.getDb().collection("users");
     const result = await collection.insertOne(userData);
-    return result.insertedId; // This returns the newly created ObjectId of the inserted user
+    return result.insertedId;
   }
   async updateUser(userId: string, updateData: any): Promise<boolean> {
     const collection = this.databaseService.getDb().collection("users");
@@ -29,18 +29,42 @@ export class UsersService {
     return result.modifiedCount === 1;
   }
 
-  async create(createUserDto: CreateUserDto): Promise<any> {
+  async createUser(createUserDto: CreateUserDto): Promise<any> {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-    const hashedConfirmPassword = await bcrypt.hash(
-      createUserDto.confirmPassword,
-      10,
-    );
     const newUser = {
       ...createUserDto,
       password: hashedPassword,
-      confirmPassword: hashedConfirmPassword,
+      timestamp: new Date().getTime(),
     };
+
     const db = this.databaseService.getDb().collection("users");
-    return await db.insertOne(newUser);
+
+    const insertResult = await db.insertOne(newUser);
+    const userId = insertResult.insertedId;
+
+    // const userDetailsCollection = this.databaseService
+    //   .getDb()
+    //   .collection("userDetails");
+    // const userFile = { userId: userId, data: {} };
+    // await userDetailsCollection.insertOne(userFile);
+
+    return {
+      userId: userId,
+      userName: insertResult.name,
+      timestamp: insertResult.timestamp,
+      ...newUser,
+    };
+  }
+
+  async createUserCollection(
+    userDetail: ObjectId,
+    userName: string,
+    userDetails: any,
+    timestamp: string,
+  ): Promise<void> {
+    const userCollection = this.databaseService
+      .getDb()
+      .collection(`${userName}${timestamp}`);
+    await userCollection.insertOne({ userDetail, ...userDetails });
   }
 }
