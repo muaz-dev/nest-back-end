@@ -9,7 +9,7 @@ module.exports = {
   plugins: ["@typescript-eslint/eslint-plugin"],
   extends: [
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    // "plugin:prettier/recommended",
   ],
   root: true,
   env: {
@@ -25,8 +25,8 @@ module.exports = {
     // quotes: ["error", "single"],
 
     // 'linebreak-style': 0,
-    // 'prettier/prettier': [
-    //   'error',
+    // "prettier/prettier": [
+    //   "error",
     //   {},
     //   {
     //     fileInfoOptions: {

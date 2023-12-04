@@ -2,5 +2,5 @@
   "singleQuote": true,
   "trailingComma": "all",
   "parser": "typescript",
-  "endOfLine": "lf"
+  "endOfLine": "CRLF"
 }
