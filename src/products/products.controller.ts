@@ -11,6 +11,12 @@ export class ProductsController {
     return { message: "Item added to cart" };
   }
 
+  @Post("/purchase/:id")
+  async addPurchase(@Param("id") id: string, @Body() item: any) {
+    await this.productService.addPurchase(id, item);
+    return { message: "Purchase Successful" };
+  }
+
   @Get(":collectionName")
   getData(@Param("collectionName") collectionName: string) {
     return this.productService.find(collectionName);
@@ -19,7 +25,7 @@ export class ProductsController {
   @Patch("/update/:collection/:id")
   async updateItem(
     @Param() params: { collection: string; id: string },
-    @Body() newCart.data: any[],
+    @Body() newCart: any[],
   ) {
     const { collection, id } = params;
     return this.productService.updateCart(id, collection, newCart);
