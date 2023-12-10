@@ -14,6 +14,11 @@ export class UsersService {
     const db = this.databaseService.getDb();
     return db.collection("users").find().toArray();
   }
+
+  async getUser(collection: string): Promise<any[]> {
+    return this.databaseService.getDb().collection(collection).find().toArray();
+  }
+
   async addUser(userData: any): Promise<any[]> {
     const collection = this.databaseService.getDb().collection("users");
     const result = await collection.insertOne(userData);

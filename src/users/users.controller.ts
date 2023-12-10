@@ -11,6 +11,11 @@ export class UsersController {
     return this.usersService.grertingUser();
   }
 
+  @Get(":collectionName")
+  getData(@Param("collectionName") collectionName: string) {
+    return this.usersService.getUser(collectionName);
+  }
+
   // @Get("/1")
   // findAllUsers(): any {
   //   return this.usersService.findAllUsers();
