@@ -47,12 +47,6 @@ export class UsersService {
     const insertResult = await db.insertOne(newUser);
     const userId = insertResult.insertedId;
 
-    // const userDetailsCollection = this.databaseService
-    //   .getDb()
-    //   .collection("userDetails");
-    // const userFile = { userId: userId, data: {} };
-    // await userDetailsCollection.insertOne(userFile);
-
     return {
       userId: userId,
       userName: insertResult.name,

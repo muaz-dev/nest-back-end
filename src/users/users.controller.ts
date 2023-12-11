@@ -16,15 +16,6 @@ export class UsersController {
     return this.usersService.getUser(collectionName);
   }
 
-  // @Get("/1")
-  // findAllUsers(): any {
-  //   return this.usersService.findAllUsers();
-  // }
-
-  // @Post("/create")
-  // async create(@Body() userData: any): Promise<any[]> {
-  //   return this.usersService.addUser(userData);
-  // }
   @Post("/register")
   async register(@Body() createUserDto: CreateUserDto) {
     const userId = await this.usersService.createUser(createUserDto);
